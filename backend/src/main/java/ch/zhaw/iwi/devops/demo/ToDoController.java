@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ToDoController {
 
-    private Map<Integer, ToDo> todos = new HashMap<Integer, ToDo>();
+    private Map<Integer, ToDo> todos = new HashMap<>();//Integer;ToDo>();
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
@@ -33,18 +33,18 @@ public class ToDoController {
         System.out.println("Init Data");
     }
 
-    @GetMapping("/test")
+    @GetMapping("/todotest")
     public String test() {
         return "ToDo app is up and running!";
     }
 
-    @GetMapping("/services/ping")
+    @GetMapping("/services/todoPing")
     public String ping() {
         String languageCode = "de";
         return "{ \"status\": \"ok\", \"userId\": \"admin"+ "\", \"languageCode\": \"" + languageCode + "\",\"version\": \"0.0.1" + "\"}";
     }
 
-    @GetMapping("/count")
+    @GetMapping("/todocount")
     public int count() {
         return this.todos.size();
     }
