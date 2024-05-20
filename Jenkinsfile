@@ -7,9 +7,18 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/cansuyavuz2/DevOpsDemoCansu2.git']])
                 }
         }
-        stage('Test') {
+        stage('Test Backend') {
             steps {
-                sh 'echo test'
+                dir('backend') {
+                    script {
+                        if (fileExists('build.gradle')) {
+                            echo 'Running Gradle test for backend'
+                            sh 'gradle test'
+                        } else {
+                            error 'No build.gradle file found in backend directory'
+                        }
+                    }
+                }
             }
         }
         stage('Deploy') {
