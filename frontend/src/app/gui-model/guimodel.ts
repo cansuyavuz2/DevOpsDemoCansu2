@@ -87,44 +87,7 @@ export class GuiModel {
                         }
                     ]
                 },
-                //Neue Kachel hinzufügen
-                {
-                    "id": "HelpdeskForm",
-                    "title": { default: "Helpdesk" },
-                    "url": "/helpdesk",
-                    "formFieldList": [
-                        {
-                            "id":  "problem",
-                            "type": "text",
-                            "name": { default: "Problem" },
-                            "required": true,
-                            "width": 2
-                        },
-                        {
-                            "id": "beschreibung",
-                            "type": "text",
-                            "name": { default: "Beschreibung" },
-                            "newRow": true,
-                            "maxLength": 4000,
-                            "height": 4,
-                            "width": 2
-                        },
-                        {
-                            "type": "deleteButton",
-                            "name": "Delete"
-                        },
-                        {
-                            "type": "cancelButton",
-                            "name": "Cancel"
-                        },
-                        {
-                            "type": "okButton",
-                            "name": "Ok"
-                        }
-                    ]
-                }
             ],
-            
             "pageList": [
                 {
                     "id": "mainmenu",
@@ -144,18 +107,8 @@ export class GuiModel {
                             "width": 2,
                             "newRow": true,
                         },
-                        {
-                            "type": "button",
-                            "name": { default: "Helpdesk" },
-                            "icon": "fa-book",
-                            "color": "red",
-                            "page": "helpdeskPage",
-                            "width": 2,
-                            "newRow": true,
-                        }
                     ]
                 },
-
                 {
                     "id": "toDoPage",
                     "elementList": [
@@ -185,38 +138,11 @@ export class GuiModel {
                         }
                     ]
                 },
-                {
-                    "id": "helpdeskPage",
-                    "elementList": [
-                        {
-                            "type": "backbutton",
-                        },
-                        {
-                            "type": "newButton",
-                            "name": { default: "HelpDesk"},
-                            "icon": "fa-plus",
-                            "color": "yellow",
-                            "width": 2,
-                            "form" : {
-                                "form" : "HelpdeskForm"
-                            }    
-                        },
-                        {
-                            "type": "list",
-                            "name": "Helpdesk",
-                            "icon": "fa-book",
-                            "color": "pink",
-                            "search": true,
-                            "url": "/helpdesk",
-                            "form": {
-                                "form": "HelpdeskForm"
-                            }
-                        }
-                    ]
-                }
             ]
         }
-    }
+    };
+
+
     get guiModel() {
         return this._guiModel;
     }

@@ -35,9 +35,6 @@
     "heroku-postbuild": "tsc --project server/tsconfig.json && ng build"
   },
   "dependencies": {
-    "@angular/platform-browser-dynamic": "^13.3.12",
-    "font-awesome": "^4.7.0",
-    "ngx-bootstrap": "^6.2.0",
     "path-framework": "0.7.0-beta.13"
   },
   "devDependencies": {
