@@ -5,9 +5,11 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,12 +27,12 @@ public class HelpdeskController {
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
-        this.helpdesk.put( 1, new Helpdesk(1, "Computerproblem", "Bluescreen beim Hochfahren"));
-        this.helpdesk.put( 2, new Helpdesk(2, "Netzwerkproblem", "Langsame Internetverbindung"));
-        this.helpdesk.put( 3, new Helpdesk(3, "Druckerproblem", "Drucker druckt nicht"));
+        this.helpdesk.put(1, new Helpdesk(1, "Computerproblem", "Bluescreen beim Hochfahren"));
+        this.helpdesk.put(2, new Helpdesk(2, "Netzwerkproblem", "Langsame Internetverbindung"));
+        this.helpdesk.put(3, new Helpdesk(3, "Druckerproblem", "Drucker druckt nicht"));
     }
 
-    @GetMapping("/helpdesktest") //geändert weil Springboot Error
+    @GetMapping("/helpdesktest")
     public String test() {
         return "Helpdesk app is up and running!";
     }
@@ -38,7 +40,7 @@ public class HelpdeskController {
     @GetMapping("/services/ping")
     public String ping() {
         String languageCode = "de";
-        return "{ \"status\": \"ok\", \"userId\": \"admin"+ "\", \"languageCode\": \"" + languageCode + "\",\"version\": \"0.0.1" + "\"}";
+        return "{ \"status\": \"ok\", \"userId\": \"admin" + "\", \"languageCode\": \"" + languageCode + "\",\"version\": \"0.0.1" + "\"}";
     }
 
     @GetMapping("/count")
@@ -60,10 +62,13 @@ public class HelpdeskController {
         return result;
     }
 
-
     @GetMapping("/services/helpdesk/{id}")
-    public Helpdesk getHelpdesk(@PathVariable Integer id) {
-        return this.helpdesk.get(id);
+    public ResponseEntity<Helpdesk> getHelpdesk(@PathVariable Integer id) {
+        Helpdesk helpdesk = this.helpdesk.get(id);
+        if (helpdesk == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(helpdesk);
     }
 
     @PostMapping("/services/helpdesk")
@@ -80,7 +85,11 @@ public class HelpdeskController {
     }
 
     @DeleteMapping("/services/helpdesk/{id}")
-    public Helpdesk deleteHelpdesk(@PathVariable Integer id) {
-        return this.helpdesk.remove(id);
+    public ResponseEntity<Helpdesk> deleteHelpdesk(@PathVariable Integer id) {
+        Helpdesk removedHelpdesk = this.helpdesk.remove(id);
+        if (removedHelpdesk == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(removedHelpdesk);
     }
 }
