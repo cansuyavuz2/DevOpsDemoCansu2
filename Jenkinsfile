@@ -11,12 +11,7 @@ pipeline {
             steps {
                 dir('backend') {
                     script {
-                        if (fileExists('build.gradle')) {
-                            echo 'Running Gradle test for backend'
-                            sh 'gradle test'
-                        } else {
-                            error 'No build.gradle file found in backend directory'
-                        }
+                        sh './gradle test'
                     }
                 }
             }
