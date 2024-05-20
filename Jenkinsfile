@@ -11,7 +11,7 @@ pipeline {
             steps {
                 dir('backend') {
                     script {
-                        sh './gradle test'
+                        sh './gradlew test'
                     }
                 }
             }
