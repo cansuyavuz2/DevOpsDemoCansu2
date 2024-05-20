@@ -21,14 +21,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelpdeskController {
 
-    private Map<Integer, Helpdesk> helpdesk = new HashMap<Integer, Helpdesk>();
+    private Map<Integer, Helpdesk> helpdesk = new HashMap<>();
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
         this.helpdesk.put( 1, new Helpdesk(1, "Computerproblem", "Bluescreen beim Hochfahren"));
         this.helpdesk.put( 2, new Helpdesk(2, "Netzwerkproblem", "Langsame Internetverbindung"));
         this.helpdesk.put( 3, new Helpdesk(3, "Druckerproblem", "Drucker druckt nicht"));
-        System.out.println("Init Data");
     }
 
     @GetMapping("/helpdesktest") //geändert weil Springboot Error
@@ -50,12 +49,12 @@ public class HelpdeskController {
     @GetMapping("/services/helpdesk")
     public List<PathListEntry<Integer>> getHelpdesks() {
         var result = new ArrayList<PathListEntry<Integer>>();
-        for (var helpdesk : this.helpdesk.values()) {
+        for (var helpdeskData : this.helpdesk.values()) {
             var entry = new PathListEntry<Integer>();
-            entry.setKey(helpdesk.getId(), "helpdeskKey");
-            entry.setName(helpdesk.getTitle());
-            entry.getDetails().add(helpdesk.getDescription());
-            entry.setTooltip(helpdesk.getDescription());
+            entry.setKey(helpdeskData.getId(), "helpdeskKey");
+            entry.setName(helpdeskData.getTitle());
+            entry.getDetails().add(helpdeskData.getDescription());
+            entry.setTooltip(helpdeskData.getDescription());
             result.add(entry);
         }
         return result;

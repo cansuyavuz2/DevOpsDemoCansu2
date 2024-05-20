@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ToDoController {
 
-    private Map<Integer, ToDo> todos = new HashMap<>();//Integer;ToDo>();
+    private Map<Integer, ToDo> todos = new HashMap<>();
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
@@ -30,7 +30,6 @@ public class ToDoController {
         this.todos.put(3,new ToDo(3, "Unit Tests", "Neues Projekt mit Unit Tests starten"));
         this.todos.put(4,new ToDo(4, "Deployment", "Jede Woche!"));
         this.todos.put(5,new ToDo(5, "Organigramm", "Löschen"));
-        System.out.println("Init Data");
     }
 
     @GetMapping("/todotest")

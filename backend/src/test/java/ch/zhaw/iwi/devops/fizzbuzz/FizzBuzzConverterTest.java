@@ -3,10 +3,10 @@ package ch.zhaw.iwi.devops.fizzbuzz;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class FizzBuzzConverterTest {
+class FizzBuzzConverterTest {
 
     @Test
-    public void fizzBuzzConverter1() {
+    void fizzBuzzConverter1() {
 
         FizzBuzzConverter fizzBuzz = new FizzBuzzConverter();
         Assertions.assertEquals("1", fizzBuzz.convert(1));
@@ -14,7 +14,7 @@ public class FizzBuzzConverterTest {
     }
 
     @Test
-    public void fizzBuzzConvertor2() {
+    void fizzBuzzConvertor2() {
 
         FizzBuzzConverter fizzBuzz = new FizzBuzzConverter();
         Assertions.assertEquals("2", fizzBuzz.convert(2));
@@ -22,7 +22,7 @@ public class FizzBuzzConverterTest {
     }
 
     @Test
-    public void fizzBuzzConvertor3() {
+    void fizzBuzzConvertor3() {
 
         FizzBuzzConverter fizzBuzz = new FizzBuzzConverter();
 
@@ -30,7 +30,7 @@ public class FizzBuzzConverterTest {
     }
     
     @Test
-    public void fizzBuzzConvertorMultiplesOfThree() {
+    void fizzBuzzConvertorMultiplesOfThree() {
 
         FizzBuzzConverter fizzBuzz = new FizzBuzzConverter();
 
